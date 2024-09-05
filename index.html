@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copiar Enlace al Portapapeles</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS -->
+</head>
+<body>
+
+    <h1></h1>
+    <img src=image1.png alt="Baner Ventas Gurú">
+
+    <div class="container">
+        <input type="text" id="linkBox" readonly>
+        <br><br>
+        <button onclick="copyToClipboard()">Copiar al Portapapeles</button>
+        <p>"Presiona el botón para copiar a tu teléfono el alias, para luego entrar a tu aplicación de homebanking favorita y pegarlo en el campo ingresar alias o CBU."</p>
+    </div>
+
+    <script>
+        // Obtiene el enlace de la URL y lo coloca en la caja de texto
+        const urlParams = new URLSearchParams(window.location.search);
+        const link = urlParams.get('link');
+        if (link) {
+            document.getElementById('linkBox').value = link;
+        }
+
+        // Función para copiar el texto al portapapeles
+        function copyToClipboard() {
+            const copyText = document.getElementById('linkBox');
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // Para dispositivos móviles
+            document.execCommand("copy");
+
+            alert("Alias Copiado al Portapapeles: " + copyText.value);
+        }
+    </script>
+
+</body>
+</html>
